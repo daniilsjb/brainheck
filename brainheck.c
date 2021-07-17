@@ -38,6 +38,7 @@ static void brainheck(char *program) {
                         case ']': ++depth; break;
                     }
                 }
+                ip++; /* move right past '[' */
                 break;
             }
         }
