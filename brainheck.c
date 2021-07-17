@@ -45,10 +45,10 @@ static void brainheck(char *program) {
     }
 }
 
-static void run_file(char *fileName) {
-    FILE *f = fopen(fileName, "rb");
+static void run_file(char *file_name) {
+    FILE *f = fopen(file_name, "rb");
     if (f == NULL) {
-        fprintf(stderr, "Could not open '%s'\n", fileName);
+        fprintf(stderr, "Could not open '%s'\n", file_name);
         exit(1);
     }
     fseek(f, 0, SEEK_END);
@@ -63,7 +63,7 @@ static void run_file(char *fileName) {
 
     size_t bytes_read = fread(contents, sizeof(char), fsize, f);
     if (bytes_read != fsize) {
-        fprintf(stderr, "Could not read file '%s'\n", fileName);
+        fprintf(stderr, "Could not read file '%s'\n", file_name);
         exit(1);
     }
     fclose(f);
