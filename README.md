@@ -16,16 +16,16 @@ only conditional jumps of the instruction pointer.
 
 Altogether, the language itself consists of only eight commands:
 
-| Character | Description                                                                                   |
-|:---------:|-----------------------------------------------------------------------------------------------|
-|    `>`    | Increment the data pointer (i.e., move to the cell to the right).                             |
-|    `<`    | Decrement the data pointer (i.e., move to the cell to the left).                              |
-|    `+`    | Increment the byte at the data pointer.                                                       |
-|    `-`    | Decrement the byte at the data pointer.                                                       |
-|    `.`    | Output the byte at the data pointer.                                                          |
-|    `,`    | Accept one byte of input, storing its value at the data pointer.                              |
-|    `[`    | If the byte at the data pointer is zero, jump forward to the command after the matching `]`.  |
-|    `]`    | If the byte at the data pointer is non-zero, jump back to the command after the matching `[`. |
+| Character | Description                                                                                       |
+|:---------:|---------------------------------------------------------------------------------------------------|
+|    `>`    | Increment the data pointer (i.e., move to the cell to the right).                                 |
+|    `<`    | Decrement the data pointer (i.e., move to the cell to the left).                                  |
+|    `+`    | Increment the byte at the data pointer.                                                           |
+|    `-`    | Decrement the byte at the data pointer.                                                           |
+|    `.`    | Output the byte at the data pointer.                                                              |
+|    `,`    | Accept one byte of input, storing its value at the data pointer.                                  |
+|    `[`    | If the byte at the data pointer is zero, jump forward to the command after the matching `]`.      |
+|    `]`    | If the byte at the data pointer is non-zero, jump backward to the command after the matching `[`. |
 
 ## Motivation
 
