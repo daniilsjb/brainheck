@@ -14,9 +14,7 @@ static void brainheck(char *program) {
             case '.': putchar(*dp);        break;
             case ',': *dp = getchar();     break;
             case '[': {
-                if (*dp != 0) {
-                    break;
-                }
+                if (*dp != 0)              break;
                 int depth = 1;
                 while (depth != 0) {
                     switch (*ip++) {
@@ -27,9 +25,7 @@ static void brainheck(char *program) {
                 break;
             }
             case ']': {
-                if (*dp == 0) {
-                    break;
-                }
+                if (*dp == 0)              break;
                 ip--; /* move back to the ']' */
                 int depth = 1;
                 while (depth != 0) {
@@ -45,40 +41,28 @@ static void brainheck(char *program) {
     }
 }
 
-static void run_file(char *file_name) {
-    FILE *f = fopen(file_name, "rb");
-    if (f == NULL) {
-        fprintf(stderr, "Could not open '%s'\n", file_name);
-        exit(1);
-    }
-    fseek(f, 0, SEEK_END);
-    size_t fsize = ftell(f);
-    rewind(f);
-
-    char *contents = malloc(fsize + 1);
-    if (contents == NULL) {
-        fprintf(stderr, "Could not allocate storage for the program");
-        exit(1);
-    }
-
-    size_t bytes_read = fread(contents, sizeof(char), fsize, f);
-    if (bytes_read != fsize) {
-        fprintf(stderr, "Could not read file '%s'\n", file_name);
-        exit(1);
-    }
-    fclose(f);
-
-    contents[fsize] = '\0';
-    brainheck(contents);
-    free(contents);
-}
-
 int main(int argc, char **argv) {
     if (argc != 2) {
         fprintf(stderr, "usage: %s <file.bf>\n", argv[0]);
         return EXIT_FAILURE;
     }
 
-    run_file(argv[1]);
+    FILE *file = fopen(argv[1], "rb");
+    if (!file) {
+        fprintf(stderr, "Could not open '%s'\n", argv[1]);
+        return EXIT_FAILURE;
+    }
+
+    fseek(file, 0, SEEK_END);
+    size_t fsize = ftell(file);
+    rewind(file);
+
+    char *program = malloc(fsize + 1);
+    fread(program, sizeof(char), fsize, file);
+    program[fsize] = '\0';
+    fclose(file);
+
+    brainheck(program);
+    free(program);
     return EXIT_SUCCESS;
 }
