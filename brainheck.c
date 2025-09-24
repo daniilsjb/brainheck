@@ -14,7 +14,7 @@ static void brainheck(char *program) {
             case '.': putchar(*dp);        break;
             case ',': *dp = getchar();     break;
             case '[': {
-                if (*dp != 0)              break;
+                if (*dp != 0) break;
                 int depth = 1;
                 while (depth != 0) {
                     switch (*ip++) {
@@ -25,7 +25,7 @@ static void brainheck(char *program) {
                 break;
             }
             case ']': {
-                if (*dp == 0)              break;
+                if (*dp == 0) break;
                 ip--; /* move back to the ']' */
                 int depth = 1;
                 while (depth != 0) {
